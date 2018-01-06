@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Container Entry</h2>
+
+<div style="border: 1px solid black; margin: 10px; padding: 10px; font-family: Consolas"><span data-bind="text: containerList().length"></span> - 40' CONTAINERS SLAC: <span data-bind="text: totalCount()"></span> BALES, <span data-bind="text: totalWeight().toFixed(3)"></span> MT</div><br />
+<div><button class="btn btn-success" data-bind="click: addContainer, enable: containerList().length < 5">Additional Container</button></div>
+<table>
+    <thead>
+        <tr>
+            <th>Container Number</th>
+            <th>Weight</th>
+            <th>Measure</th>
+            <th></th>
+            <th>Piece Count</th>
+            <th>Piece Type</th>
+            <th>Seal Number</th>
+            <th></th>
+        </tr>
+    </thead>
+    <!-- Todo: Generate table body -->
+    <tbody data-bind="foreach: containerList">
+        <tr>
+            <td><input data-bind="value: number" placeholder="ex. TCNU1234567"/></td>
+            <td><input data-bind="value: weight" placeholder="00.000" /></td>
+            <td><select data-bind="options: $root.availableMeasures, value: measure, optionsText: 'measureName'"></select></td>
+            <td data-bind="text: formattedMT"></td>
+            <td><input data-bind="value: pieceCount" placeholder="" /></td>
+            <td><input data-bind="value: pieceType" placeholder="BALES" /></td>
+            <td><input data-bind="value: seal" placeholder="" /></td>
+            <td><a href="#" data-bind="click: $root.removeContainer">Remove</a></td>
+        </tr>
+    </tbody>
+</table>
+<div><button class="btn btn-primary" data-bind="click: loadContainers">Load Containers</button></div>
